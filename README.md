@@ -3,6 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
 ## Project Overview
+
 This project is a standalone Angular application developed as part of a front-end job application process. It involves converting a specific page from a provided Figma design into a functional and interactive web application using
 
 - Angular
@@ -12,6 +13,7 @@ This project is a standalone Angular application developed as part of a front-en
 - SCSS
 
 ## Features
+
 - **Angular Framework**: Utilizing the latest Angular features for a dynamic user experience.
 - **Responsive Design**: Meticulously crafted components with attention to the Figma design to ensure visual consistency.
 - **Interactive Components**: Components are designed to mimic the functionality and appearance as per the Figma prototype.

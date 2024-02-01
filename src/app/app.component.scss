@@ -1,0 +1,66 @@
+/* styles.scss */
+
+// import colors from _variables.scss
+@use "../styles/variables" as *;
+
+// Variables
+$top-menu-height: 5vh;
+$top-menu-min-height: 50px;
+$sidenav-width: 25vw;
+$sidenav-min-width: 100px;
+$sidenav-max-width: 300px;
+
+// Mixins
+@mixin responsive-sidenav {
+  width: $sidenav-width;
+  min-width: $sidenav-min-width;
+  max-width: $sidenav-max-width;
+}
+
+/* Top Menu Style */
+.topmenu-container {
+  width: 100%;
+  height: $top-menu-height;
+  min-height: $top-menu-min-height;
+}
+
+/* Sidenav Container Style */
+.sidenav-container {
+  height: calc(100vh - #{$top-menu-height}); // Interpolate SCSS variable
+  overflow-y: auto;
+}
+
+/* Sidenav Style */
+.sidenav {
+  @include responsive-sidenav; // Include mixin
+  overflow-y: auto;
+  background-color: $gray-40;
+}
+
+/* Sidenav Content Style */
+.sidenav-content {
+  width: calc(100vw - #{$sidenav-width}); // Interpolate SCSS variable
+  overflow-y: auto;
+  background-color: $gray-40;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  $top-menu-height: 4vh; // Adjusted for mobile
+  $top-menu-min-height: 40px; // Adjusted for mobile
+  $sidenav-width: 20vw; // Adjusted for mobile
+  $sidenav-min-width: 150px; // Adjusted for mobile
+
+  .topmenu-container {
+    height: $top-menu-height;
+    min-height: $top-menu-min-height;
+  }
+
+  .sidenav {
+    @include responsive-sidenav; // Include mixin
+  }
+
+  .sidenav-content {
+    width: calc(100vw - #{$sidenav-width}); // Interpolate SCSS variable
+  }
+}
