@@ -1,5 +1,100 @@
-<!-- customer-table.component.html -->
-<div class="customer-table">
-  <h2>Customer</h2>
-  <p>Customer table content...</p>
+<div class="customer-table-container">
+  <h2>Customers</h2>
+  <div class="filter-search-container">
+    <!-- Filter Bar -->
+    <mat-form-field appearance="fill">
+      <mat-label>Filter</mat-label>
+      <mat-select
+        [(value)]="filterValue"
+        (selectionChange)="applyFilter($event.value)"
+      >
+        <mat-option value="name">Name</mat-option>
+        <mat-option value="location">Location</mat-option>
+        <mat-option value="orders">Orders</mat-option>
+        <mat-option value="spent">Spent</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Search Bar -->
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applySearch($event)"
+        placeholder="Type to search..."
+      />
+    </mat-form-field>
+  </div>
+  <!-- Table -->
+  <mat-table [dataSource]="dataSource">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="check">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          color="primary"
+          (change)="masterToggle()"
+          [checked]="isAllSelected()"
+          [indeterminate]="someSelected() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let customer">
+        <mat-checkbox
+          color="primary"
+          (change)="checkboxChange($event, customer)"
+          [checked]="customer.check"
+        ></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Image Column-->
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let customer" class="photo-column-container">
+        <img
+          *ngIf="customer.image; else nameInitial"
+          [src]="customer.image"
+          alt="Customer Image"
+        />
+        <ng-template #nameInitial>
+          <div class="initials">{{ getInitials(customer.name) }}</div>
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let customer"> {{ customer.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Location Column -->
+    <ng-container matColumnDef="location">
+      <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+      <mat-cell *matCellDef="let customer"> {{ customer.location }} </mat-cell>
+    </ng-container>
+
+    <!-- Orders Column -->
+    <ng-container matColumnDef="orders">
+      <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
+      <mat-cell *matCellDef="let customer"> {{ customer.orders }} </mat-cell>
+    </ng-container>
+
+    <!-- Spent Column -->
+    <ng-container matColumnDef="spent">
+      <mat-header-cell *matHeaderCellDef> Spent </mat-header-cell>
+      <mat-cell *matCellDef="let customer"> {{ customer.spent }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    class="custom-paginator"
+    [length]="dataSource.data.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 </div>

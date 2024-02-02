@@ -1,0 +1,93 @@
+// import colors from _variables.scss
+@use "../../styles/variables" as *;
+
+.customer-table-container {
+  width: 1110px;
+  height: 1016px;
+  margin: 35px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+mat-header-cell {
+  height: 60px !important;
+  display: flex !important;
+  justify-items: flex-end !important;
+  align-items: flex-end !important;
+  padding-bottom: 8px !important;
+}
+
+mat-cell {
+  height: 60px !important;
+}
+
+.mat-column-check {
+  flex: 0 0 5%;
+}
+
+.mat-column-name {
+  flex: 0 0 50%;
+}
+
+.mat-column-image {
+  flex: 0 0 5%;
+  width: 100%;
+  height: 100%;
+  img {
+    padding: 12px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+    background-color: $gray-50;
+  }
+  .initials {
+    padding: 12px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $gray-50;
+    color: $gray-0;
+    font-size: 24px; // Adjust as needed
+  }
+}
+
+.mat-paginator {
+  margin-top: 20px;
+}
+
+.custom-paginator {
+  display: flex;
+  justify-content: space-between; // This separates the range label and navigation controls
+
+  .mat-paginator-range-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mat-paginator-range-label {
+    order: 2; // This moves the range label to the right
+  }
+
+  .mat-paginator-navigation {
+    order: 1; // This ensures that navigation controls stay on the left
+  }
+}
+
+.filter-search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  mat-form-field {
+    width: 100%; // Make form fields take full width of the container
+    height: 75px;
+    max-width: 300px; // Limit the maximum width of the input fields
+    margin: 0 10px; // Add margin to separate the fields
+  }
+}

@@ -34,14 +34,14 @@ $sidenav-max-width: 300px;
 .sidenav {
   @include responsive-sidenav; // Include mixin
   overflow-y: auto;
-  background-color: $gray-40;
+  background-color: $gray-20;
 }
 
 /* Sidenav Content Style */
 .sidenav-content {
   width: calc(100vw - #{$sidenav-width}); // Interpolate SCSS variable
   overflow-y: auto;
-  background-color: $gray-40;
+  background-color: $gray-20;
 }
 
 /* Media Queries for responsiveness */
